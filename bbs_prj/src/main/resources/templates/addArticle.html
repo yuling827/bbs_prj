@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>添加文章</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link type="text/css" rel="stylesheet" href="../css/main.css" th:href="@{/asserts/css/main.css}"/>
+	<link type="text/css" rel="stylesheet" href="css/ie6.css" th:href="@{/asserts/css/ie6.css}"/>
+	<link type="text/css" rel="stylesheet" href="css/ie6.css" th:href="@{/user/css/loading.css}"/>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="container">
+			<!-- 引入顶部公共栏，通过模板名::选择器的方式引入 -->
+			<div th:replace="common/common::#scene"></div>
+			<div id="content">
+				<div id="col_left">
+					<div class="post">
+						<div class="meta"></div>
+						<div class="comments">
+							<h2>添加文章</h2>
+							<input type="hidden" id="userId" th:value="${userId}"/>
+							<form class="h" action="" method="post">
+								<div class="clear">
+									<label class="specialLabel" style="padding-top: 7px;">标题：</label>
+									<input id="title" type="text" name="title"/>
+								</div>
+								<div class="clear">
+									<textarea id="edi" name="edi"></textarea>
+								</div>
+								<div>
+									<label></label>
+									<div class="clear"></div>
+								</div>
+								<div class="button_wrapper" >
+									<input name="提交" id="commitBtn" type="button" class="button" value="提交"/>
+									<input name="保存为草稿" id="saveCraft" type="button" class="button" value="保存为草稿"/>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div id="col_right">
+					<div id="search_box">
+						<form action="" method="post">
+							<div>
+								<input type="text" name="search"/>
+							</div>
+							<div class="button_wrapper">
+								<input type="submit" value="Search" class="button"/>
+							</div>
+							<div class="clear"></div>
+						</form>
+					</div>
+					<div id="sidebar">
+						<h2>页面导航</h2>
+						<ul>
+							<li><a href="" th:href="@{/qrySiteArticle(pno=1)}">博客首页</a></li>
+							<li th:if="${username}==null"><a href="" th:href="@{/register}">注册</a></li>
+							<li th:if="${username}==null"><a href="" th:href="@{/}">登录</a></li>
+							<li th:if="${username}!=null"><a href="" th:href="@{/qryAllArticle(pno=1)}">用户首页</a></li>
+							<li th:if="${username}!=null"><a href="" th:href="@{/editBlogInfo}">个性化设置</a></li>
+							<li th:if="${username}!=null"><a href="" th:href="@{/addArticle}">写博客</a></li>
+							<li th:if="${username}!=null"><a href="">相册</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<!-- 引入底部栏 -->
+			<div th:replace="common/common::#footer"></div>
+		</div>
+	</div>
+
+	<!-- 等待框 -->
+	<div id="loadingWrap" style="display: none">
+		<div id="loading"></div>
+		<div class="spinner">
+			<div class="spinner-container container1">
+				<div class="circle1"></div>
+				<div class="circle2"></div>
+				<div class="circle3"></div>
+				<div class="circle4"></div>
+			</div>
+			<div class="spinner-container container2">
+				<div class="circle1"></div>
+				<div class="circle2"></div>
+				<div class="circle3"></div>
+				<div class="circle4"></div>
+			</div>
+			<div class="spinner-container container3">
+				<div class="circle1"></div>
+				<div class="circle2"></div>
+				<div class="circle3"></div>
+				<div class="circle4"></div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery/3.3.1-1/jquery.js}"></script>
+	<script type="text/javascript" th:src="@{/ckeditor/ckeditor.js}"></script>
+	<script type="text/javascript" src="js/site.js" th:src="@{/asserts/js/main.js}"></script>
+	<script type="text/javascript">
+		$(function () {
+		    CKEDITOR.replace("edi");
+
+		    $("#commitBtn").bind("click",$.main.addArticle);
+            $("#saveCraft").bind("click",$.main.saveCraft);
+        });
+	</script>
+
+</body>
+</html>

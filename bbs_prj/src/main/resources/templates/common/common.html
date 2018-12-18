@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!-- 通过thymeleaf模板引擎将公共部分抽取出来 -->
+    <!-- 顶部栏 -->
+    <div id="scene"><img src="../images/scene.jpg" th:src="@{/asserts/img/topback.jpg}" alt=""/>
+        <h1 th:text="${username}==null?'博客首页':(${blogtitle}==null?'':${blogtitle})">
+        </h1>
+        <h1>
+            <br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 28px" th:text="${idiograph}==null?'':${idiograph}"></span>
+        </h1>
+        <div id="menu">
+            <div class="holder"><a href="" th:href="@{/qrySiteArticle(pno=1)}">博客首页</a></div>
+            <div class="holder" th:if="${username}==null"><a href="" th:href="@{/register}">注册</a></div>
+            <div class="holder" th:if="${username}==null"><a href="" th:href="@{/}">登录</a></div>
+            <div class="holder" th:if="${username}!=null"><a href="" th:href="@{/qryAllArticle(pno=1)}">用户首页</a></div>
+            <div class="holder" th:if="${username}!=null"><a href="" th:href="@{/editBlogInfo}">个性化设置</a></div>
+            <div class="holder" th:if="${username}!=null"><a href="" th:href="@{/addArticle}">写博客</a></div>
+            <div class="holder" th:if="${username}!=null"><a href="">相册</a></div>
+            <div class="holder" th:if="${username}!=null"><a href="" th:href="@{/logout}">退出</a></div>
+        </div>
+    </div>
+
+    <!-- 底部栏 -->
+    <div id="footer">
+        <div class="clear"></div>
+        <hr/>
+        <p class="credit">博客网站系统</p>
+    </div>
+
+</body>
+</html>

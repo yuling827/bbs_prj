@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>新博客系统注册</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<link type="text/css" rel="stylesheet" href="css/main.css" th:href="@{/asserts/css/main.css}"/>
+		<link type="text/css" rel="stylesheet" href="css/ie6.css" th:href="@{/asserts/css/ie6.css}"/>
+		<link type="text/css" rel="stylesheet" href="css/ie6.css" th:href="@{/asserts/css/sweetalert.css}"/>
+		<link type="text/css" rel="stylesheet" href="css/ie6.css" th:href="@{/user/css/loading.css}"/>
+		<link type="text/css" rel="stylesheet" href="css/ie6.css" th:href="@{/asserts/css/common.css}"/>
+		<link rel="stylesheet" th:href="@{/asserts/font-awesome-4.7.0/css/font-awesome.css}">
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="container">
+				<!--<div id="scene"><img src="images/scene.jpg" th:src="@{/asserts/img/scene.jpg}" alt=""/>-->
+				<div id="scene"><img src="images/scene.jpg" th:src="@{/asserts/img/topback.jpg}" alt=""/>
+					<!--<h1>博客网站系统</h1>-->
+					<div id="menu">
+						<div class="holder"><a href="" th:href="@{/qryAllArticle(pno=1)}">博客首页</a></div>
+						<div class="holder"><a href="" th:href="@{/register}">注册</a></div>
+						<div class="holder"><a href="" th:href="@{/}">登录</a></div>
+					</div>
+				</div>
+				<div id="content">
+					<div id="col_left">
+						<div class="post">
+							<div class="meta"></div>
+							<div class="comments">
+								<!--<h2>新博客注册</h2>-->
+								<h2>注册</h2>
+								<form class="h" action="" method="post">
+									<div class="groups">
+										<div class="registForm">
+											<label>帐号:<span style="color: red">*</span></label>
+											<input id="username" flag="" type="text" placeholder="账号" name="username"/>
+											<span name="right" style="color: green;display: none"><i class="fa fa-check fa-fw"></i></span>
+											<span name="error" style="color: red;display: none"><i class="fa fa-close fa-fw"></i></span>
+										</div>
+										<p class="cueText"><i class="fa fa-exclamation-circle fa-fw"></i><span>提示内容</span></p>
+									</div>
+
+									<div class="groups">
+										<div class="registForm">
+											<label>密码:<span style="color: red">*</span></label>
+											<input id="password" flag="" type="password" placeholder="密码" name="password"/>
+											<span name="right" style="color: green;display: none"><i class="fa fa-check fa-fw"></i></span>
+											<span name="error" style="color: red;display: none"><i class="fa fa-close fa-fw"></i></span>
+										</div>
+										<p class="cueText"><i class="fa fa-exclamation-circle fa-fw"></i><span>提示内容</span></p>
+									</div>
+									<div class="groups">
+										<div class="registForm">
+											<label>确认密码:<span style="color: red">*</span></label>
+											<input id="repassword" flag="" type="password" placeholder="确认密码" name="repassword"/>
+											<span name="right" style="color: green;display: none"><i class="fa fa-check fa-fw"></i></span>
+											<span name="error" style="color: red;display: none"><i class="fa fa-close fa-fw"></i></span>
+										</div>
+										<p class="cueText"><i class="fa fa-exclamation-circle fa-fw"></i><span>提示内容</span></p>
+									</div>
+									<div class="groups">
+										<div class="registForm">
+											<label>昵称:<span style="color: red">*</span></label>
+											<input id="nickname" flag="" type="text" placeholder="昵称" name="nickname"/>
+											<span name="right" style="color: green;display: none"><i class="fa fa-check fa-fw"></i></span>
+											<span name="error" style="color: red;display: none"><i class="fa fa-close fa-fw"></i></span>
+										</div>
+										<p class="cueText"><i class="fa fa-exclamation-circle fa-fw"></i><span>提示内容</span></p>
+									</div>
+									<div>
+										<label></label>
+										<div class="clear"></div>
+									</div>
+									<div class="button_wrapper">
+										<input name="提交" type="button" id="register" class="button" value="注册"/>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div id="col_right">
+						<div id="search_box">
+							<form action="" method="post">
+								<div>
+									<input type="text" name="search"/>
+								</div>
+								<div class="button_wrapper">
+									<input type="submit" value="Search" class="button"/>
+								</div>
+								<div class="clear"></div>
+							</form>
+						</div>
+						<div id="sidebar">
+							<h2>页面导航</h2>
+							<ul>
+								<li><a href="" th:href="@{/qryAllArticle(pno=1)}">博客首页</a></li>
+								<li><a href="" th:href="@{/register}">注册</a></li>
+								<li><a href="" th:href="@{/}">登录</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<!-- 引入底部栏 -->
+				<div th:replace="common/common::#footer"></div>
+			</div>
+		</div>
+
+		<!-- 等待框 -->
+		<div id="loadingWrap" style="display: none">
+			<div id="loading"></div>
+			<div class="spinner">
+				<div class="spinner-container container1">
+					<div class="circle1"></div>
+					<div class="circle2"></div>
+					<div class="circle3"></div>
+					<div class="circle4"></div>
+				</div>
+				<div class="spinner-container container2">
+					<div class="circle1"></div>
+					<div class="circle2"></div>
+					<div class="circle3"></div>
+					<div class="circle4"></div>
+				</div>
+				<div class="spinner-container container3">
+					<div class="circle1"></div>
+					<div class="circle2"></div>
+					<div class="circle3"></div>
+					<div class="circle4"></div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery/3.3.1-1/jquery.js}"></script>
+		<script type="text/javascript" src="js/site.js" th:src="@{/asserts/js/sweetalert.min.js}"></script>
+		<script type="text/javascript" src="js/site.js" th:src="@{/asserts/js/main.js}"></script>
+		<script type="text/javascript" src="js/site.js" th:src="@{/asserts/js/common.js}"></script>
+
+		<script type="text/javascript">
+			var tmpField;
+            // var pathName = document.location.pathname;
+            // var index = pathName.substr(1).indexOf("/");
+            // var path = pathName.substr(0,index+1);
+			$(function () {
+				//绑定单击事件
+                $(".h").find("input[type=text],input[type=password]").each(function () {
+					$(this).click(function () {
+					    var cueText=$(this).parent().parent().find(".cueText");
+                        cueText.hide();
+                        $(this).css("border","1px solid #b0b5bd");
+                    })
+                });
+                $("#username").blur($.main.checkLegal);
+                $("#password").blur($.main.checkPwd);
+                $("#repassword").blur($.main.checkRPwd);
+                $("#nickname").blur($.main.checkName);
+                $("#register").on("click",$.main.register);
+            });
+		</script>
+
+	</body>
+</html>

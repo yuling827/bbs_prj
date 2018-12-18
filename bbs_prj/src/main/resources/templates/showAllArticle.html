@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>博客系统首页</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<meta http-equiv="Cache-Control" content="no-cache,must-revalidate"/>
+		<meta http-equiv="Expires" content="0"/>
+		<link type="text/css" rel="stylesheet" href="css/main.css" th:href="@{/asserts/css/main.css}" />
+		<link type="text/css" rel="stylesheet" href="css/ie6.css" th:href="@{/asserts/css/ie6.css}" />
+		<link type="text/css" rel="stylesheet" href="css/kkpager_blue.css" th:href="@{/asserts/css/kkpager.css}" />
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="container">
+				<!-- 引入顶部公共栏，通过模板名::选择器的方式引入 -->
+				<div th:replace="common/common::#scene"></div>
+				<div id="content">
+					<div id="col_left">
+						<div class="post">
+							<!--<div class="meta">-->
+								<!--<a class="title" href="">博客首页</a>-->
+								<!--<div class="clear"></div>-->
+							<!--</div>-->
+							<div th:each="article : ${articleList}">
+								<div class="comments">
+									<div class="comment">
+										<div class="meta">
+											<span>
+												<a th:href="@{/showArticle(username=${article.username},id=${article.id})}">[[${article.title}]]</a>
+											</span>
+											<div class="clear"></div>
+										</div>
+									</div>
+									<div class="comment alt">
+										<div class="meta">
+											<span class="datetime">
+												发表于：[[${article.createdDate}]] | 点击：[[${article.hasread}]] | 作者：[[${article.username}]]
+											</span>
+											<div class="clear"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div style="float: left;">
+							<div id="kkpager"></div>
+						</div>
+					</div>
+					<div id="col_right">
+						<div id="search_box">
+							<form action="http://www.baidu.com" target="_blank" method="get">
+								<div>
+									<input type="text" name=""/>
+								</div>
+								<div class="button_wrapper">
+									<input type="submit" value="Search" class="button"/>
+								</div>
+								<div class="clear"></div>
+							</form>
+						</div>
+						<div id="sidebar">
+							<h2>页面导航</h2>
+							<ul>
+								<li><a href="" th:href="@{/qrySiteArticle(pno=1)}">博客首页</a></li>
+								<li th:if="${username}==null"><a href="" th:href="@{/register}">注册</a></li>
+								<li th:if="${username}==null"><a href="" th:href="@{/}">登录</a></li>
+								<li th:if="${username}!=null"><a href="" th:href="@{/qryAllArticle(pno=1)}">用户首页</a></li>
+								<li th:if="${username}!=null"><a href="" th:href="@{/editBlogInfo}">个性化设置</a></li>
+								<li th:if="${username}!=null"><a href="" th:href="@{/addArticle}">写博客</a></li>
+								<li th:if="${username}!=null"><a href="">相册</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<!-- 引入底部栏 -->
+				<div th:replace="common/common::#footer"></div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js" th:src="@{/webjars/jquery/3.3.1-1/jquery.js}"></script>
+		<script type="text/javascript" src="js/kkpager.min.js" th:src="@{/asserts/js/kkpager.min.js}"></script>
+
+		<script type="text/javascript">
+			var path = document.location.pathname;
+			var pageNo = [[${pageNo}]];
+			var totalCount = [[${totalCount}]];
+			var totalPage = [[${totalPage}]];
+
+            $(function () {
+                kkpager.generPageHtml({
+                    //当前页码
+                    pno : pageNo,
+                    //总页码
+                    total : totalPage,
+                    //总数据条数
+                    totalRecords : totalCount,
+                    //链接前部
+                    hrefFormer : path,
+                    //链接尾部
+                    hrefLatter : "",
+                    getLink : function(n){
+                        return this.hrefFormer + this.hrefLatter + "?pno="+n;
+                    }
+				});
+            });
+
+		</script>
+
+	</body>
+</html>
